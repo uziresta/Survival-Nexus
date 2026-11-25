@@ -8,7 +8,7 @@ const waterUnitsPerDay = 2;
 const waterdayDemand =
   waterSurvivorCount * waterUnitsPerDay;
 
-const waterCompleteDays = Math.floor(waterUnits / waterDailyDemand);
+const waterCompleteDays = Math.floor(waterUnits / waterdayDemand);
 
 const waterLeft =
   waterUnits - waterCompleteDays * waterdayDemand;
@@ -35,3 +35,29 @@ const foodLeftover =
 console.log("Food daily demand:", foodDailyDemand);
 console.log("Food complete days:", foodCompleteDays);
 console.log("Food leftover:", foodLeftover);
+
+
+
+// ACTIVITY 04 - SUPPLY APPROVAL
+
+
+const supplyStock = 5;
+const requestedQuantity = 2;
+const isSourceInfected = false;
+
+if (!Number.isSafeInteger(supplyStock) || supplyStock < 0 || supplyStock > 1000000) {
+  console.log("Rejected: Invalid stock.");
+
+} else if (!Number.isSafeInteger(requestedQuantity) || requestedQuantity < 1 || requestedQuantity > 1000000) {
+  console.log("Rejected: Invalid quantity.");
+
+} else if (typeof isSourceInfected !== "boolean" || isSourceInfected) {
+  console.log("Rejected: Invalid or infected source.");
+
+} else if (requestedQuantity > supplyStock) {
+  console.log("Rejected: Insufficient stock.");
+
+} else {
+  console.log("Request approved.");
+  console.log("Remaining stock:", supplyStock - requestedQuantity);
+}
