@@ -61,3 +61,63 @@ if (!Number.isSafeInteger(supplyStock) || supplyStock < 0 || supplyStock > 10000
   console.log("Request approved.");
   console.log("Remaining stock:", supplyStock - requestedQuantity);
 }
+
+// ACTIVITY 05 - CALCULATE DAILY RATIONS
+
+
+// SHELTER WATER DATA
+const waterCounts = [12, 9, 0];
+const dailyRequirement = 3;
+
+// VALIDATION
+let isValid = true;
+
+// Validate daily requirement
+if (
+  !Number.isSafeInteger(dailyRequirement) ||
+  dailyRequirement <= 0
+) {
+  console.log("Rejected: Invalid daily water requirement.");
+  isValid = false;
+}
+
+// Validate each shelter's water stock
+for (let i = 0; i < waterCounts.length; i++) {
+  const stock = waterCounts[i];
+
+  if (
+    !Number.isSafeInteger(stock) ||
+    stock < 0 ||
+    stock > 1000000
+  ) {
+    console.log(
+      `Rejected: Invalid water stock at array index ${i} (position ${i + 1}).`
+    );
+    isValid = false;
+  }
+}
+
+// COMPUTATION
+if (isValid) {
+  const shelterCoverage = [];
+
+  let totalWater = 0;
+  let sheltersBelowTwoDays = 0;
+
+  for (const water of waterCounts) {
+    const completeDays = Math.floor(water / dailyRequirement);
+
+    shelterCoverage.push(completeDays);
+    totalWater += water;
+
+    if (completeDays < 2) {
+      sheltersBelowTwoDays++;
+    }
+  }
+
+  // RESULTS
+  console.log("Shelter coverage:", shelterCoverage);
+  console.log("Total water:", totalWater);
+  console.log("Shelter count:", waterCounts.length);
+  console.log("Shelters below 2 days:", sheltersBelowTwoDays);
+}
