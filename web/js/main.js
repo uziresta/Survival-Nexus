@@ -1,3 +1,4 @@
+import { daysOfSupplies } from "./domain.js";
 
 // TOTAL SUPPLIES AND DEMAND //
 const waterUnits = 18;
@@ -8,7 +9,7 @@ const waterUnitsPerDay = 2;
 const waterdayDemand =
   waterSurvivorCount * waterUnitsPerDay;
 
-const waterCompleteDays = Math.floor(waterUnits / waterdayDemand);
+const waterCompleteDays = daysOfSupplies(waterUnits, waterdayDemand);
 
 const waterLeft =
   waterUnits - waterCompleteDays * waterdayDemand;
@@ -27,7 +28,7 @@ const foodUnitsSurvivorPerDay = 2;
 const foodDailyDemand =
   foodSurvivorCount * foodUnitsSurvivorPerDay;
 
-const foodCompleteDays = Math.floor(foodUnits / foodDailyDemand);
+const foodCompleteDays = daysOfSupplies(foodUnits, foodDailyDemand);
 
 const foodLeftover =
   foodUnits - foodCompleteDays * foodDailyDemand;
